@@ -15,7 +15,7 @@ p {
 }
 
 .btn {
-  width: 25rem;
+  width: 23rem;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
   cursor: pointer;
@@ -29,7 +29,7 @@ p {
   padding: 0.5rem 1.25rem;
 }
 
-.btn:hover, .btnClicked {
+.btn:hover, .selected {
   background: salmon;
   color: #fff;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),

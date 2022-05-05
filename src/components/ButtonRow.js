@@ -1,10 +1,25 @@
+import { useState } from "react";
 import Button from "./Button";
 
 const ButtonRow = () => {
+  const [selectedButton, setSelectedButton] = useState("");
+
+  const handleButtonSelected = (button) => () => {
+    setSelectedButton(button);
+  };
+
   return (
     <>
-      <Button label="Just me" />
-      <Button label="I'm buying with someone" />
+      {["Just me", "I'm buying with someone"].map((button) => (
+        <Button
+          key={button}
+          className={button === selectedButton ? "selected" : ""}
+          label={button}
+          handleButtonSelected={handleButtonSelected(button)}
+        >
+          {button}
+        </Button>
+      ))}
     </>
   );
 };
