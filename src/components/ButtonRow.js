@@ -1,8 +1,10 @@
+import Button from "./Button";
+
 const ButtonRow = () => {
   return (
     <>
-      <button className="btn">Just me</button>
-      <button className="btn">I'm buying with someone</button>
+      <Button label="Just me" />
+      <Button label="I'm buying with someone" />
     </>
   );
 };
