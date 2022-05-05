@@ -23,6 +23,7 @@ const InputRowWithButton = ({ label }) => {
         return (
           <InputRow
             key={index}
+            labelText={`Other income #${index + 1}`}
             name="amount"
             value={singleInput.amount}
             onChange={(e) => handleInputChange(e, index)}

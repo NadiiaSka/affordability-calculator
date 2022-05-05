@@ -8,7 +8,7 @@ function App() {
   const [isOtherSourceOfIncome, setIsOtherSourceOfIncome] = useState(false);
 
   return (
-    <div className="Container">
+    <div className="formContainer">
       <h1>Calculator</h1>
       <p>How many of you are buying the property?</p>
       <ButtonRow
@@ -23,11 +23,11 @@ function App() {
         setIsBuyingWithSomeone={setIsBuyingWithSomeone}
       />
       <p>What is your base salary/wages? (before tax)</p>
-      <InputRow />
+      <InputRow name="salary" />
       {isBuyingWithSomeone && (
         <>
           <p>What's the second applicant's salary/wages? (before tax)</p>
-          <InputRow />
+          <InputRow name="salary" />
         </>
       )}
       <p>Do you have any other source of income?</p>
@@ -39,10 +39,7 @@ function App() {
         setIsOtherSourceOfIncome={setIsOtherSourceOfIncome}
       />
       {isOtherSourceOfIncome && (
-        <>
-          <p>Other income #1</p>
-          <InputListWithButton label="Add other income" />
-        </>
+        <InputListWithButton label="Add other income" />
       )}
     </div>
   );
