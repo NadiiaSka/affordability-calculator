@@ -4,6 +4,7 @@ import InputRow from "./components/InputRow";
 
 function App() {
   const [isBuyingWithSomeone, setIsBuyingWithSomeone] = useState(false);
+  const [isOtherSourceOfIncome, setIsOtherSourceOfIncome] = useState(false);
 
   return (
     <div className="Container">
@@ -30,7 +31,14 @@ function App() {
           { id: 1, type: "otherSourceOfIncome", label: "Yes" },
           { id: 2, type: "otherSourceOfIncome", label: "No" },
         ]}
+        setIsOtherSourceOfIncome={setIsOtherSourceOfIncome}
       />
+      {isOtherSourceOfIncome && (
+        <>
+          <p>Other income #1</p>
+          <InputRow />
+        </>
+      )}
     </div>
   );
 }

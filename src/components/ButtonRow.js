@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Button from "./Button";
 
-const ButtonRow = ({ buttonLabels, setIsBuyingWithSomeone }) => {
+const ButtonRow = ({
+  buttonLabels,
+  setIsBuyingWithSomeone,
+  setIsOtherSourceOfIncome,
+}) => {
   const [selectedButton, setSelectedButton] = useState("");
 
   const handleButtonSelected = (button) => () => {
@@ -11,6 +15,9 @@ const ButtonRow = ({ buttonLabels, setIsBuyingWithSomeone }) => {
     }
     if (button.type === "firstStep" && button.id === 1) {
       setIsBuyingWithSomeone(false);
+    }
+    if (button.type === "otherSourceOfIncome" && button.id === 1) {
+      setIsOtherSourceOfIncome(true);
     }
   };
 
