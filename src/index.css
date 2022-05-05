@@ -1,7 +1,37 @@
 body {
+width: 90vw;
 background: #f0f4f8;
 color: #102a43;
 font: cabin;
 font-weight: 400;
 line-height: 1.75;
+margin: 2rem;
+}
+
+p {
+  max-width: 40em;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.btn {
+  width: 25rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  background: lightgray;
+  border: transparent;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  transition: 0.3s ease-in-out all;
+  display: inline-block;
+  font-size: 1.3rem;
+  padding: 0.5rem 1.25rem;
+}
+
+.btn:hover, .btnClicked {
+  background: salmon;
+  color: #fff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
