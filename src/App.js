@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ButtonRow from "./components/ButtonRow";
 import InputRow from "./components/InputRow";
+import InputListWithButton from "./components/InputListWithButton";
 
 function App() {
   const [isBuyingWithSomeone, setIsBuyingWithSomeone] = useState(false);
@@ -12,8 +13,12 @@ function App() {
       <p>How many of you are buying the property?</p>
       <ButtonRow
         buttonLabels={[
-          { id: 1, type: "firstStep", label: "Just me" },
-          { id: 2, type: "firstStep", label: "I'm buying with someone" },
+          { id: 1, type: "buyingAloneOrWithSomeone", label: "Just me" },
+          {
+            id: 2,
+            type: "buyingAloneOrWithSomeone",
+            label: "I'm buying with someone",
+          },
         ]}
         setIsBuyingWithSomeone={setIsBuyingWithSomeone}
       />
@@ -36,7 +41,7 @@ function App() {
       {isOtherSourceOfIncome && (
         <>
           <p>Other income #1</p>
-          <InputRow />
+          <InputListWithButton label="Add other income" />
         </>
       )}
     </div>
