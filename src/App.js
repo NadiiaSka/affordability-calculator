@@ -10,9 +10,8 @@ function App() {
   const [values, setValues] = useState({});
 
   const calculateTotal = (newValues) => {
-    const incomesArray = Object.values(newValues);
-    console.log(incomesArray);
-    const newTotal = incomesArray.reduce((accumulator, value) => {
+    const incomeArray = Object.values(newValues);
+    const newTotal = incomeArray.reduce((accumulator, value) => {
       return accumulator + (value && parseInt(value));
     }, 0);
     setTotalIncome(newTotal);
