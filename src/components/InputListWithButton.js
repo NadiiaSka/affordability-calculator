@@ -2,17 +2,16 @@ import { useState } from "react";
 import Button from "./Button";
 import InputRow from "./InputRow";
 
-const InputRowWithButton = ({ label, values, setValues, calculateTotal }) => {
-  const [inputList, setInputList] = useState([{ amount: 0 }]);
+const InputListWithButton = ({ label, values, setValues, calculateTotal }) => {
+  const [inputListLength, setInputListLength] = useState(1);
 
   const handleAddInputField = () => {
-    setInputList([...inputList, { amount: 0 }]);
-    console.log(inputList);
+    setInputListLength(inputListLength + 1);
   };
 
   return (
     <div>
-      {inputList.map((singleInput, index) => {
+      {[...Array(inputListLength)].map((_, index) => {
         return (
           <InputRow
             key={index}
@@ -33,4 +32,4 @@ const InputRowWithButton = ({ label, values, setValues, calculateTotal }) => {
   );
 };
 
-export default InputRowWithButton;
+export default InputListWithButton;
