@@ -68,7 +68,12 @@ function App() {
             setIsOtherSourceOfIncome={setIsOtherSourceOfIncome}
           />
           {isOtherSourceOfIncome && (
-            <InputListWithButton label="Add other income" />
+            <InputListWithButton
+              label="Add other income"
+              values={values}
+              setValues={setValues}
+              calculateTotal={calculateTotal}
+            />
           )}
         </div>
         <div className="resultContainer">
