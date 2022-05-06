@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ButtonRow from "./components/ButtonRow";
 import InputRow from "./components/InputRow";
-import InputListWithButton from "./components/InputListWithButton";
+import InputList from "./components/InputList";
 
 function App() {
   const [isBuyingWithSomeone, setIsBuyingWithSomeone] = useState(false);
@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <header>
-        <h1>Calculator</h1>
+        <h1>Affordability Calculator</h1>
       </header>
       <main>
         <div className="formContainer">
@@ -63,7 +63,7 @@ function App() {
             setIsOtherSourceOfIncome={setIsOtherSourceOfIncome}
           />
           {isOtherSourceOfIncome && (
-            <InputListWithButton
+            <InputList
               label="Add other income"
               values={values}
               setValues={setValues}

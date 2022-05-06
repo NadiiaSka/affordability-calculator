@@ -47,6 +47,10 @@ p {
   font-size: 1rem;
 }
 
+.btn-remove {
+  border: none;
+}
+
 .input {
 height: 1.3rem;
 padding: 0.375rem 0.75rem;

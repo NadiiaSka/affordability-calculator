@@ -48,9 +48,10 @@ const InputRow = ({ labelText, name, values, setValues, calculateTotal }) => {
         onChange={handleValueChange}
       />
       <select className="dropDown" onChange={handleOptionChange}>
-        <option value="perYear">per year</option>
+        <option value="perYear">per year </option>
         <option value="perWeek">per week</option>
       </select>
+      <button className="btn-remove">&#10006;</button>
     </div>
   );
 };
