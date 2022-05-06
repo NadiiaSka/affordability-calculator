@@ -16,7 +16,7 @@ const InputListWithButton = ({ label, values, setValues, calculateTotal }) => {
           <InputRow
             key={index}
             labelText={`Other income #${index + 1}`}
-            name="additionalIncome"
+            name={`additionalIncome${index}`}
             values={values}
             setValues={setValues}
             calculateTotal={calculateTotal}

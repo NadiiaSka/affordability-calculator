@@ -7,18 +7,14 @@ function App() {
   const [isBuyingWithSomeone, setIsBuyingWithSomeone] = useState(false);
   const [isOtherSourceOfIncome, setIsOtherSourceOfIncome] = useState(false);
   let [totalIncome, setTotalIncome] = useState(0);
-  const [values, setValues] = useState({
-    salaryFirst: "",
-    salarySecond: "",
-    additionalIncome: "",
-  });
+  const [values, setValues] = useState({});
 
   const calculateTotal = (newValues) => {
-    const { salaryFirst, salarySecond, additionalIncome } = newValues;
-    const newTotal =
-      (salaryFirst && parseInt(salaryFirst)) +
-      (salarySecond && parseInt(salarySecond)) +
-      (additionalIncome && parseInt(additionalIncome));
+    const incomesArray = Object.values(newValues);
+    console.log(incomesArray);
+    const newTotal = incomesArray.reduce((accumulator, value) => {
+      return accumulator + (value && parseInt(value));
+    }, 0);
     setTotalIncome(newTotal);
   };
 
