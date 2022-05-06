@@ -5,7 +5,7 @@ import InputRow from "./InputRow";
 const InputRowWithButton = ({ label }) => {
   const [inputList, setInputList] = useState([{ amount: 0 }]);
 
-  const handleAddInput = () => {
+  const handleAddInputField = () => {
     setInputList([...inputList, { amount: 0 }]);
     console.log(inputList);
   };
@@ -15,6 +15,7 @@ const InputRowWithButton = ({ label }) => {
     const list = [...inputList];
     list[index][name] = value;
     setInputList(list);
+    console.log(inputList);
   };
 
   return (
@@ -24,7 +25,7 @@ const InputRowWithButton = ({ label }) => {
           <InputRow
             key={index}
             labelText={`Other income #${index + 1}`}
-            name="amount"
+            name="additionalIncome"
             value={singleInput.amount}
             onChange={(e) => handleInputChange(e, index)}
           />
@@ -33,7 +34,7 @@ const InputRowWithButton = ({ label }) => {
       <Button
         label={label}
         className="btn-add-more"
-        handleButtonSelected={handleAddInput}
+        handleButtonSelected={handleAddInputField}
       />
     </div>
   );

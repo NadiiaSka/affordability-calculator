@@ -10,16 +10,16 @@ const ButtonRow = ({
 
   const handleButtonSelected = (button) => () => {
     setSelectedButton(button.id);
-    if (button.type === "buyingAloneOrWithSomeone" && button.id === 2) {
+    if (button.name === "salary" && button.id === 2) {
       setIsBuyingWithSomeone(true);
     }
-    if (button.type === "buyingAloneOrWithSomeone" && button.id === 1) {
+    if (button.name === "salary" && button.id === 1) {
       setIsBuyingWithSomeone(false);
     }
-    if (button.type === "otherSourceOfIncome" && button.id === 1) {
+    if (button.name === "otherSourceOfIncome" && button.id === 1) {
       setIsOtherSourceOfIncome(true);
     }
-    if (button.type === "otherSourceOfIncome" && button.id === 2) {
+    if (button.name === "otherSourceOfIncome" && button.id === 2) {
       setIsOtherSourceOfIncome(false);
     }
   };
