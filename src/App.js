@@ -4,11 +4,9 @@ import InputRow from "./components/InputRow";
 import InputList from "./components/InputList";
 
 function App() {
-  const [isBuyingWithSomeone, setIsBuyingWithSomeone] = useState(false);
-  const [isOtherSourceOfIncome, setIsOtherSourceOfIncome] = useState(false);
+  const [buttonSelected, setButtonSelected] = useState({});
   const [totalIncome, setTotalIncome] = useState(0);
-  const [totalLiabilities, setTotalLiabilities] = useState(0);
-
+  // const [totalLiabilities, setTotalLiabilities] = useState(0);
   const [incomeValues, setIncomeValues] = useState({});
 
   const calculateTotal = (newValues) => {
@@ -29,14 +27,16 @@ function App() {
           <p>How many of you are buying the property?</p>
           <ButtonRow
             buttonLabels={[
-              { id: 1, name: "salary", label: "Just me" },
+              { id: 1, name: "secondSalary", label: "Just me", value: false },
               {
                 id: 2,
-                name: "salary",
+                name: "secondSalary",
                 label: "I'm buying with someone",
+                value: true,
               },
             ]}
-            setIsBuyingWithSomeone={setIsBuyingWithSomeone}
+            buttonSelected={buttonSelected}
+            setButtonSelected={setButtonSelected}
           />
           <p>What is your base salary/wages? (before tax)</p>
           <InputRow
@@ -45,7 +45,7 @@ function App() {
             setValues={setIncomeValues}
             calculateTotal={calculateTotal}
           />
-          {isBuyingWithSomeone && (
+          {buttonSelected.secondSalary && (
             <>
               <p>What's the second applicant's salary/wages? (before tax)</p>
               <InputRow
@@ -59,12 +59,13 @@ function App() {
           <p>Do you have any other source of income?</p>
           <ButtonRow
             buttonLabels={[
-              { id: 1, name: "otherSourceOfIncome", label: "Yes" },
-              { id: 2, name: "otherSourceOfIncome", label: "No" },
+              { id: 1, name: "otherSourceOfIncome", label: "Yes", value: true },
+              { id: 2, name: "otherSourceOfIncome", label: "No", value: false },
             ]}
-            setIsOtherSourceOfIncome={setIsOtherSourceOfIncome}
+            setButtonSelected={setButtonSelected}
+            buttonSelected={buttonSelected}
           />
-          {isOtherSourceOfIncome && (
+          {buttonSelected.otherSourceOfIncome && (
             <InputList
               label="Add other income"
               values={incomeValues}
