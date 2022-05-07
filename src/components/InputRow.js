@@ -46,6 +46,7 @@ const InputRow = ({ labelText, name, values, setValues, calculateTotal }) => {
         name={name}
         className="input"
         onChange={handleValueChange}
+        min="0"
       />
       <select className="dropDown" onChange={handleOptionChange}>
         <option value="perYear">per year </option>

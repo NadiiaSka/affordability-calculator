@@ -2,12 +2,46 @@ import { useState } from "react";
 import ButtonRow from "./components/ButtonRow";
 import InputRow from "./components/InputRow";
 import InputList from "./components/InputList";
+import axios from "axios";
 
 function App() {
   const [isBuyingWithSomeone, setIsBuyingWithSomeone] = useState(false);
   const [isOtherSourceOfIncome, setIsOtherSourceOfIncome] = useState(false);
   let [totalIncome, setTotalIncome] = useState(0);
   const [values, setValues] = useState({});
+
+  const handleApiCall = () => {
+    const payload = {
+      total_income: 100,
+      total_liabilities: 0,
+      deposit: 0,
+    };
+
+    axios
+      .post("https://react-dev-test-api.vercel.app/api/test", { payload })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      });
+    // const response = await fetch(
+    //   `https://react-dev-test-api.vercel.app/api/test`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       "Access-Control-Allow-Origin": "*",
+    //       accepts: "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       total_income: 100,
+    //       total_liabilities: 0,
+    //       deposit: 0,
+    //     }),
+    //   }
+    // );
+    // console.log(response.json());
+    // return await response.json();
+  };
 
   const calculateTotal = (newValues) => {
     const incomeArray = Object.values(newValues);
@@ -76,6 +110,9 @@ function App() {
           <p>$</p>
           <p>Total income</p>
           <p>$ {totalIncome}</p>
+          <button className="btn-add-more" onClick={handleApiCall}>
+            Submit
+          </button>
         </div>
       </main>
     </>
