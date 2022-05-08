@@ -1,6 +1,14 @@
 import { useState } from "react";
+import DropDown from "./DropDown";
 
-const InputRow = ({ labelText, name, values, setValues, calculateTotal }) => {
+const InputRow = ({
+  labelText,
+  name,
+  values,
+  setValues,
+  calculateTotal,
+  type,
+}) => {
   const [isPerYear, setIsPerYear] = useState(true);
   const [currentName, setCurrentName] = useState();
   const [currentValue, setCurrentValue] = useState();
@@ -48,10 +56,9 @@ const InputRow = ({ labelText, name, values, setValues, calculateTotal }) => {
         onChange={handleValueChange}
         min="0"
       />
-      <select className="dropDown" onChange={handleOptionChange}>
-        <option value="perYear">per year </option>
-        <option value="perWeek">per week</option>
-      </select>
+      {type === "withDropDown" && (
+        <DropDown handleOptionChange={handleOptionChange} />
+      )}
       <button className="btn-remove">&#10006;</button>
     </div>
   );
