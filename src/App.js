@@ -6,15 +6,29 @@ import InputList from "./components/InputList";
 function App() {
   const [buttonSelected, setButtonSelected] = useState({});
   const [totalIncome, setTotalIncome] = useState(0);
+  const [totalLoan, setTotalLoan] = useState(0);
+  const [totalCreditCards, setTotalCreditCard] = useState(0);
+
   // const [totalLiabilities, setTotalLiabilities] = useState(0);
   const [incomeValues, setIncomeValues] = useState({});
+  const [loanValues, setLoanValues] = useState({});
 
   const calculateTotal = (newValues) => {
     const incomeArray = Object.values(newValues);
     const newTotal = incomeArray.reduce((accumulator, value) => {
       return accumulator + (value && parseInt(value));
     }, 0);
-    setTotalIncome(newTotal);
+    return newTotal;
+  };
+
+  const calculateTotalIncome = (newValues) => {
+    setTotalIncome(calculateTotal(newValues));
+  };
+  const calculateTotalLoan = (newValues) => {
+    setTotalLoan(calculateTotal(newValues));
+  };
+  const calculateTotalCreditCard = (newValues) => {
+    setTotalCreditCard(calculateTotal(newValues));
   };
 
   return (
@@ -43,7 +57,7 @@ function App() {
             name="salaryFirst"
             values={incomeValues}
             setValues={setIncomeValues}
-            calculateTotal={calculateTotal}
+            calculateTotal={calculateTotalIncome}
           />
           {buttonSelected.secondSalary && (
             <>
@@ -52,7 +66,7 @@ function App() {
                 name="salarySecond"
                 values={incomeValues}
                 setValues={setIncomeValues}
-                calculateTotal={calculateTotal}
+                calculateTotal={calculateTotalIncome}
               />
             </>
           )}
@@ -71,7 +85,7 @@ function App() {
               buttonLabel="Add other income"
               values={incomeValues}
               setValues={setIncomeValues}
-              calculateTotal={calculateTotal}
+              calculateTotal={calculateTotalIncome}
             />
           )}
           <p>Do you have any loans?</p>
@@ -87,9 +101,27 @@ function App() {
             <InputList
               inputLabel="Loan"
               buttonLabel="Add loan"
+              values={loanValues}
+              setValues={setLoanValues}
+              calculateTotal={calculateTotalLoan}
+            />
+          )}
+          <p>Do you have any credit cards?</p>
+          <ButtonRow
+            buttonLabels={[
+              { id: 1, name: "creditCards", label: "Yes", value: true },
+              { id: 2, name: "creditCards", label: "No", value: false },
+            ]}
+            setButtonSelected={setButtonSelected}
+            buttonSelected={buttonSelected}
+          />
+          {buttonSelected.creditCards && (
+            <InputList
+              inputLabel="Credit card"
+              buttonLabel="Add credit card"
               values={incomeValues}
               setValues={setIncomeValues}
-              calculateTotal={calculateTotal}
+              calculateTotal={calculateTotalCreditCard}
             />
           )}
         </div>
@@ -98,6 +130,10 @@ function App() {
           <p>$ 0</p>
           <p>Total income</p>
           <p>$ {totalIncome}</p>
+          <p>Total loans</p>
+          <p>$ {totalLoan}</p>
+          <p>Total credit cards</p>
+          <p>$ {totalCreditCards}</p>
         </div>
       </main>
     </>

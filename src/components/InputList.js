@@ -22,7 +22,7 @@ const InputList = ({
           <InputRow
             key={index}
             labelText={`${inputLabel} #${index + 1}`}
-            name={`additionalIncome${index}`}
+            name={`${inputLabel}${index}`}
             values={values}
             setValues={setValues}
             calculateTotal={calculateTotal}
