@@ -2,6 +2,7 @@ import { useState } from "react";
 import ButtonRow from "./components/ButtonRow";
 import InputRow from "./components/InputRow";
 import InputList from "./components/InputList";
+import mainImage from "./assets/images/house.svg";
 
 function App() {
   const [buttonSelected, setButtonSelected] = useState({});
@@ -162,6 +163,9 @@ function App() {
               <p>$ {totalCreditCards}</p>
             </>
           )}
+        </div>
+        <div className="imageContainer">
+          <img src={mainImage} alt="house" className="img" />
         </div>
       </main>
     </>

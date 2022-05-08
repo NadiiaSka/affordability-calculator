@@ -12,6 +12,7 @@ margin: 2rem;
 main {
   display: grid;
   max-width: 70rem;
+  grid-template-areas: "formContainer" "resultContainer";
 }
 
 p {
@@ -78,6 +79,15 @@ font-size: 1.1rem;
   margin-top: 1rem;
   border-radius: 0.25rem;
   padding: 0.5rem 1.25rem;
+  grid-area: resultContainer;
+}
+
+.formContainer {
+  grid-area: formContainer;
+}
+
+.img {
+  display: none;
 }
 
 @media screen and (min-width: 992px) {
@@ -90,4 +100,10 @@ font-size: 1.1rem;
   width: 23rem;
 }
 
+.img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  margin-left: 5rem;
+}
 }
