@@ -2,6 +2,8 @@ import { useState } from "react";
 import ButtonRow from "./components/ButtonRow";
 import InputRow from "./components/InputRow";
 import InputList from "./components/InputList";
+import mainImage from "./assets/images/house.svg";
+import CurrencyFormat from "react-currency-format";
 
 function App() {
   const [buttonSelected, setButtonSelected] = useState({});
@@ -149,19 +151,37 @@ function App() {
           )}
 
           <p>Total income</p>
-          <p>$ {totalIncome}</p>
+          <CurrencyFormat
+            value={totalIncome}
+            displayType={"text"}
+            thousandSeparator={true}
+            prefix={"$"}
+          />
           {totalLoan > 0 && (
             <>
               <p>Total loans</p>
-              <p>$ {totalLoan}</p>
+              <CurrencyFormat
+                value={totalLoan}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"$"}
+              />
             </>
           )}
           {totalCreditCards > 0 && (
             <>
               <p>Total credit cards</p>
-              <p>$ {totalCreditCards}</p>
+              <CurrencyFormat
+                value={totalCreditCards}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"$"}
+              />
             </>
           )}
+        </div>
+        <div className="imageContainer">
+          <img src={mainImage} alt="house" className="img" />
         </div>
       </main>
     </>
