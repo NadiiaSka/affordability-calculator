@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DropDown from "./DropDown";
 
 const InputRow = ({
   labelText,
@@ -56,12 +57,7 @@ const InputRow = ({
         min="0"
       />
       {type === "withDropDown" && (
-        <>
-          <select className="dropDown" onChange={handleOptionChange}>
-            <option value="perYear">per year </option>
-            <option value="perWeek">per week</option>
-          </select>
-        </>
+        <DropDown handleOptionChange={handleOptionChange} />
       )}
       <button className="btn-remove">&#10006;</button>
     </div>
