@@ -8,9 +8,10 @@ function App() {
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalLoan, setTotalLoan] = useState(0);
   const [totalCreditCards, setTotalCreditCard] = useState(0);
-  const [incomeValues, setIncomeValues] = useState({});
-  const [deposit, setDeposit] = useState(0);
   const [loanValues, setLoanValues] = useState({});
+  const [incomeValues, setIncomeValues] = useState({});
+  const [creditCardValues, setCreditCardValues] = useState({});
+  const [depositValue, setDepositValue] = useState(0);
 
   const calculateTotal = (newValues) => {
     const incomeArray = Object.values(newValues);
@@ -30,7 +31,7 @@ function App() {
     setTotalCreditCard(calculateTotal(newValues));
   };
   const calculateTotalDeposit = (newValues) => {
-    setDeposit(calculateTotal(newValues));
+    setDepositValue(calculateTotal(newValues));
   };
 
   return (
@@ -124,25 +125,25 @@ function App() {
             <InputList
               inputLabel="Credit card"
               buttonLabel="Add credit card"
-              values={incomeValues}
-              setValues={setIncomeValues}
+              values={creditCardValues}
+              setValues={setCreditCardValues}
               calculateTotal={calculateTotalCreditCard}
             />
           )}
           <p>How much deposit do you have?</p>
           <InputRow
             name="deposit"
-            values={deposit}
-            setValues={setDeposit}
+            values={depositValue}
+            setValues={setDepositValue}
             calculateTotal={calculateTotalDeposit}
           />
         </div>
         <div className="resultContainer">
-          {deposit > 0 && (
+          {depositValue > 0 && (
             <>
               <p>
-                With you deposit of ${deposit} you could afford a property up to
-                $725,000
+                With you deposit of ${depositValue} you could afford a property
+                up to $725,000
               </p>
             </>
           )}

@@ -10,7 +10,6 @@ const ButtonRow = ({ buttonLabels, buttonSelected, setButtonSelected }) => {
     let value = button.value;
     const newValues = { ...buttonSelected, [name]: value };
     setButtonSelected(newValues);
-    console.log(buttonSelected);
   };
 
   return (
