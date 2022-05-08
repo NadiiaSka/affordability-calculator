@@ -20,6 +20,7 @@ describe("ButtonRow Component", () => {
   test("renders two buttons on the screen", () => {
     expect(screen.getByText(/Yes/i)).toBeInTheDocument();
     expect(screen.getByText(/No/i)).toBeInTheDocument();
+    expect(screen.getAllByRole("button").length).toBe(2);
   });
   test("clicking one button makes it selected and setButtonSelected function called", () => {
     const button1 = screen.getByText("Yes");
