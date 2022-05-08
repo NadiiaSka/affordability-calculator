@@ -6,6 +6,7 @@ const InputList = ({
   inputLabel,
   buttonLabel,
   values,
+  type,
   setValues,
   calculateTotal,
 }) => {
@@ -24,11 +25,12 @@ const InputList = ({
             labelText={`${inputLabel} #${index + 1}`}
             name={`${inputLabel}${index}`}
             values={values}
+            type={type}
             setValues={setValues}
             calculateTotal={calculateTotal}
           />
         );
-      })}{" "}
+      })}
       <Button
         label={buttonLabel}
         className="btn-add-more"

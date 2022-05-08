@@ -8,9 +8,8 @@ function App() {
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalLoan, setTotalLoan] = useState(0);
   const [totalCreditCards, setTotalCreditCard] = useState(0);
-
-  // const [totalLiabilities, setTotalLiabilities] = useState(0);
   const [incomeValues, setIncomeValues] = useState({});
+  const [deposit, setDeposit] = useState(0);
   const [loanValues, setLoanValues] = useState({});
 
   const calculateTotal = (newValues) => {
@@ -29,6 +28,9 @@ function App() {
   };
   const calculateTotalCreditCard = (newValues) => {
     setTotalCreditCard(calculateTotal(newValues));
+  };
+  const calculateTotalDeposit = (newValues) => {
+    setDeposit(calculateTotal(newValues));
   };
 
   return (
@@ -55,6 +57,7 @@ function App() {
           <p>What is your base salary/wages? (before tax)</p>
           <InputRow
             name="salaryFirst"
+            type="withDropDown"
             values={incomeValues}
             setValues={setIncomeValues}
             calculateTotal={calculateTotalIncome}
@@ -64,6 +67,7 @@ function App() {
               <p>What's the second applicant's salary/wages? (before tax)</p>
               <InputRow
                 name="salarySecond"
+                type="withDropDown"
                 values={incomeValues}
                 setValues={setIncomeValues}
                 calculateTotal={calculateTotalIncome}
@@ -83,6 +87,7 @@ function App() {
             <InputList
               inputLabel="Other income"
               buttonLabel="Add other income"
+              type="withDropDown"
               values={incomeValues}
               setValues={setIncomeValues}
               calculateTotal={calculateTotalIncome}
@@ -124,16 +129,38 @@ function App() {
               calculateTotal={calculateTotalCreditCard}
             />
           )}
+          <p>How much deposit do you have?</p>
+          <InputRow
+            name="deposit"
+            values={deposit}
+            setValues={setDeposit}
+            calculateTotal={calculateTotalDeposit}
+          />
         </div>
         <div className="resultContainer">
-          <p>Here's what you can borrow</p>
-          <p>$ 0</p>
+          {deposit > 0 && (
+            <>
+              <p>
+                With you deposit of ${deposit} you could afford a property up to
+                $725,000
+              </p>
+            </>
+          )}
+
           <p>Total income</p>
           <p>$ {totalIncome}</p>
-          <p>Total loans</p>
-          <p>$ {totalLoan}</p>
-          <p>Total credit cards</p>
-          <p>$ {totalCreditCards}</p>
+          {totalLoan > 0 && (
+            <>
+              <p>Total loans</p>
+              <p>$ {totalLoan}</p>
+            </>
+          )}
+          {totalCreditCards > 0 && (
+            <>
+              <p>Total credit cards</p>
+              <p>$ {totalCreditCards}</p>
+            </>
+          )}
         </div>
       </main>
     </>
