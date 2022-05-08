@@ -2,7 +2,13 @@ import { useState } from "react";
 import Button from "./Button";
 import InputRow from "./InputRow";
 
-const InputList = ({ label, values, setValues, calculateTotal }) => {
+const InputList = ({
+  inputLabel,
+  buttonLabel,
+  values,
+  setValues,
+  calculateTotal,
+}) => {
   const [inputListLength, setInputListLength] = useState(1);
 
   const handleAddInputField = () => {
@@ -15,7 +21,7 @@ const InputList = ({ label, values, setValues, calculateTotal }) => {
         return (
           <InputRow
             key={index}
-            labelText={`Other income #${index + 1}`}
+            labelText={`${inputLabel} #${index + 1}`}
             name={`additionalIncome${index}`}
             values={values}
             setValues={setValues}
@@ -24,7 +30,7 @@ const InputList = ({ label, values, setValues, calculateTotal }) => {
         );
       })}{" "}
       <Button
-        label={label}
+        label={buttonLabel}
         className="btn-add-more"
         handleButtonSelected={handleAddInputField}
       />

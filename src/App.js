@@ -67,7 +67,26 @@ function App() {
           />
           {buttonSelected.otherSourceOfIncome && (
             <InputList
-              label="Add other income"
+              inputLabel="Other income"
+              buttonLabel="Add other income"
+              values={incomeValues}
+              setValues={setIncomeValues}
+              calculateTotal={calculateTotal}
+            />
+          )}
+          <p>Do you have any loans?</p>
+          <ButtonRow
+            buttonLabels={[
+              { id: 1, name: "loans", label: "Yes", value: true },
+              { id: 2, name: "loans", label: "No", value: false },
+            ]}
+            setButtonSelected={setButtonSelected}
+            buttonSelected={buttonSelected}
+          />
+          {buttonSelected.loans && (
+            <InputList
+              inputLabel="Loan"
+              buttonLabel="Add loan"
               values={incomeValues}
               setValues={setIncomeValues}
               calculateTotal={calculateTotal}
