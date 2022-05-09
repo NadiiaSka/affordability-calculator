@@ -28,7 +28,7 @@ const InputRow = ({
     e.preventDefault();
     if (e.target.value === "perWeek") {
       setIsPerYear(false);
-      const weekValue = currentValue > 0 ? parseInt(currentValue) * 52 : 0;
+      const weekValue = parseInt(currentValue) * 52;
       const newValues = {
         ...values,
         [currentName]: weekValue,
@@ -37,7 +37,7 @@ const InputRow = ({
       setCurrentValue(weekValue);
     } else {
       setIsPerYear(true);
-      const yearValue = currentValue > 0 ? parseInt(currentValue) / 52 : 0;
+      const yearValue = parseInt(currentValue) / 52;
       const newValues = {
         ...values,
         [currentName]: yearValue,
