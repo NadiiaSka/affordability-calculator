@@ -1,7 +1,7 @@
 const fetchResult = async () => {
   try {
     const response = await fetch(
-      `https://react-dev-test-api.vercel.app/api/test/checkout-session`,
+      `https://react-dev-test-api.vercel.app/api/test`,
       {
         method: "POST",
         headers: {
