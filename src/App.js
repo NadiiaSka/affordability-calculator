@@ -4,6 +4,7 @@ import InputRow from "./components/InputRow";
 import InputList from "./components/InputList";
 import mainImage from "./assets/images/house.svg";
 import CurrencyFormat from "react-currency-format";
+import fetchResult from "./api/fetchResult";
 
 function App() {
   const [buttonSelected, setButtonSelected] = useState({});
@@ -36,6 +37,11 @@ function App() {
     setDepositValue(calculateTotal(newValues));
   };
 
+  const handleApiCall = async () => {
+    const result = await fetchResult();
+    console.log(result);
+  };
+
   return (
     <>
       <header>
@@ -43,7 +49,6 @@ function App() {
       </header>
       <main>
         <div className="formContainer">
-          <p>How many of you are buying the property?</p>
           <ButtonRow
             buttonLabels={[
               { id: 1, name: "secondSalary", label: "Just me", value: false },
@@ -139,6 +144,11 @@ function App() {
             setValues={setDepositValue}
             calculateTotal={calculateTotalDeposit}
           />
+          <div>
+            <button style={{ marginTop: "1rem" }} onClick={handleApiCall}>
+              test API
+            </button>
+          </div>
         </div>
         <div className="resultContainer">
           {depositValue > 0 && (
