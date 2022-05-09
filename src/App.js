@@ -49,6 +49,7 @@ function App() {
       </header>
       <main>
         <div className="formContainer">
+          <p>How many of you are buying the property?</p>
           <ButtonRow
             buttonLabels={[
               { id: 1, name: "secondSalary", label: "Just me", value: false },
