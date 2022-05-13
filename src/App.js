@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ButtonRow from "./components/ButtonRow";
 import InputRow from "./components/InputRow";
 import InputList from "./components/InputList";
