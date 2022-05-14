@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ButtonRow from "./components/ButtonRow";
 import InputRow from "./components/InputRow";
 import InputList from "./components/InputList";
@@ -39,17 +39,22 @@ function App() {
     setDepositValue(calculateTotal(newValues));
   };
 
-  const handleApiCall = async (e) => {
-    e.preventDefault();
-    const response = await fetchResult(
-      totalIncome,
-      totalCreditCards,
-      totalLoan,
-      depositValue
-    );
-    setBorrowing(response.borrowing);
-    setPropertyPrice(response.property_price);
-  };
+  const fetchData = useCallback(async () => {
+    setTimeout(async () => {
+      const response = await fetchResult(
+        totalIncome,
+        totalCreditCards,
+        totalLoan,
+        depositValue
+      );
+      setBorrowing(response.borrowing);
+      setPropertyPrice(response.property_price);
+    }, 2000);
+  }, [totalIncome, totalCreditCards, totalLoan, depositValue]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return (
     <>
@@ -154,11 +159,6 @@ function App() {
             setValues={setDepositValue}
             calculateTotal={calculateTotalDeposit}
           />
-          <div>
-            <button style={{ marginTop: "1rem" }} onClick={handleApiCall}>
-              test API
-            </button>
-          </div>
         </div>
         <div className="resultContainer">
           <p>Here's what you can borrow</p>
