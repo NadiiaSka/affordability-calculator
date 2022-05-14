@@ -40,16 +40,14 @@ function App() {
   };
 
   const fetchData = useCallback(async () => {
-    setTimeout(async () => {
-      const response = await fetchResult(
-        totalIncome,
-        totalCreditCards,
-        totalLoan,
-        depositValue
-      );
-      setBorrowing(response.borrowing);
-      setPropertyPrice(response.property_price);
-    }, 2000);
+    const response = await fetchResult(
+      totalIncome,
+      totalCreditCards,
+      totalLoan,
+      depositValue
+    );
+    setBorrowing(response.borrowing);
+    setPropertyPrice(response.property_price);
   }, [totalIncome, totalCreditCards, totalLoan, depositValue]);
 
   useEffect(() => {
