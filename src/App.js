@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ButtonRow from "./components/ButtonRow";
 import InputRow from "./components/InputRow";
 import InputList from "./components/InputList";
@@ -15,6 +15,8 @@ function App() {
   const [incomeValues, setIncomeValues] = useState({});
   const [creditCardValues, setCreditCardValues] = useState({});
   const [depositValue, setDepositValue] = useState(0);
+  const [borrowing, setBorrowing] = useState(0);
+  const [propertyPrice, setPropertyPrice] = useState(0);
 
   const calculateTotal = (newValues) => {
     const incomeArray = Object.values(newValues);
@@ -37,10 +39,20 @@ function App() {
     setDepositValue(calculateTotal(newValues));
   };
 
-  const handleApiCall = async () => {
-    const result = await fetchResult();
-    console.log(result);
-  };
+  const fetchData = useCallback(async () => {
+    const response = await fetchResult(
+      totalIncome,
+      totalCreditCards,
+      totalLoan,
+      depositValue
+    );
+    setBorrowing(response.borrowing);
+    setPropertyPrice(response.property_price);
+  }, [totalIncome, totalCreditCards, totalLoan, depositValue]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return (
     <>
@@ -145,22 +157,27 @@ function App() {
             setValues={setDepositValue}
             calculateTotal={calculateTotalDeposit}
           />
-          <div>
-            <button style={{ marginTop: "1rem" }} onClick={handleApiCall}>
-              test API
-            </button>
-          </div>
         </div>
         <div className="resultContainer">
+          <p>Here's what you can borrow</p>
+          <CurrencyFormat
+            value={borrowing}
+            displayType={"text"}
+            thousandSeparator={true}
+            prefix={"$"}
+          />
           {depositValue > 0 && (
-            <>
-              <p>
-                With you deposit of ${depositValue} you could afford a property
-                up to $725,000
-              </p>
-            </>
+            <p>
+              With you deposit of ${depositValue} you could afford a property up
+              to{"  "}
+              <CurrencyFormat
+                value={propertyPrice}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"$"}
+              />
+            </p>
           )}
-
           <p>Total income</p>
           <CurrencyFormat
             value={totalIncome}

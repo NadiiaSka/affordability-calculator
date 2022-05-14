@@ -6,8 +6,7 @@ const ButtonRow = ({ buttonLabels, buttonSelected, setButtonSelected }) => {
 
   const handleButtonSelected = (button) => () => {
     setSelectedButton(button.id);
-    let name = button.name;
-    let value = button.value;
+    let { name, value } = button;
     const newValues = { ...buttonSelected, [name]: value };
     setButtonSelected(newValues);
   };
