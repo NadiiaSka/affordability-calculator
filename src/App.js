@@ -51,7 +51,11 @@ function App() {
   }, [totalIncome, totalCreditCards, totalLoan, depositValue]);
 
   useEffect(() => {
-    fetchData();
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, [fetchData]);
 
   return (
