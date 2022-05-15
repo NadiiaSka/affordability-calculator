@@ -4,7 +4,11 @@ const fetchResult = async (
   totalLoan,
   deposit
 ) => {
-  const totalLiabilities = parseInt(totalCreditCards) + parseInt(totalLoan);
+  const payload = {
+    total_income: parseInt(totalIncome),
+    total_liabilities: parseInt(totalCreditCards) + parseInt(totalLoan),
+    deposit: parseInt(deposit),
+  };
   try {
     const response = await fetch(
       `https://react-dev-test-api.vercel.app/api/test`,
@@ -13,11 +17,7 @@ const fetchResult = async (
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          total_income: totalIncome,
-          total_liabilities: totalLiabilities,
-          deposit: deposit,
-        }),
+        body: JSON.stringify(payload),
       }
     );
     return await response.json();
