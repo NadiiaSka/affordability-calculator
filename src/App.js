@@ -20,8 +20,8 @@ function App() {
 
   const calculateTotal = (newValues) => {
     const incomeArray = Object.values(newValues);
-    const newTotal = incomeArray.reduce((accumulator, value) => {
-      return accumulator + (value && parseInt(value));
+    const newTotal = incomeArray.reduce((total, value) => {
+      return total + (value && parseInt(value));
     }, 0);
     return newTotal;
   };
