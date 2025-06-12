@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import DropDown from "./DropDown";
 
 const InputRow = ({
@@ -12,6 +12,7 @@ const InputRow = ({
   const [isPerYear, setIsPerYear] = useState(true);
   const [currentName, setCurrentName] = useState();
   const [currentValue, setCurrentValue] = useState();
+  const inputRef = useRef(null);
 
   const handleValueChange = (e) => {
     e.preventDefault();
@@ -26,6 +27,8 @@ const InputRow = ({
 
   const handleOptionChange = (e) => {
     e.preventDefault();
+    if (!currentName || !currentValue) return;
+
     if (e.target.value === "perWeek") {
       setIsPerYear(false);
       const weekValue = parseInt(currentValue) * 52;
@@ -33,6 +36,7 @@ const InputRow = ({
         ...values,
         [currentName]: weekValue,
       };
+      setValues(newValues);
       calculateTotal(newValues);
       setCurrentValue(weekValue);
     } else {
@@ -42,9 +46,22 @@ const InputRow = ({
         ...values,
         [currentName]: yearValue,
       };
+      setValues(newValues);
       calculateTotal(newValues);
       setCurrentValue(yearValue);
     }
+  };
+
+  const handleRemoveClick = () => {
+    if (inputRef.current) inputRef.current.value = "";
+
+    const newValues = { ...values };
+    delete newValues[name];
+    setValues(newValues);
+    calculateTotal(newValues);
+
+    setCurrentName(null);
+    setCurrentValue(null);
   };
 
   return (
@@ -57,11 +74,14 @@ const InputRow = ({
         className="input"
         onChange={handleValueChange}
         min="0"
+        ref={inputRef}
       />
       {type === "withDropDown" && (
         <DropDown handleOptionChange={handleOptionChange} />
       )}
-      <button className="btn-remove">&#10006;</button>
+      <button className="btn-remove" onClick={handleRemoveClick}>
+        &#10006;
+      </button>
     </div>
   );
 };
