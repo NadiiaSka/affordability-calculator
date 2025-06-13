@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import DropDown from "./DropDown";
+import { NumericFormat } from "react-number-format";
 
 const InputRow = ({
   labelText,
@@ -68,13 +69,16 @@ const InputRow = ({
     <div className="inputRow">
       <p>{labelText}</p>
       <span>$ </span>
-      <input
-        type="number"
+      <NumericFormat
         name={name}
         className="input"
-        onChange={handleValueChange}
-        min="0"
-        ref={inputRef}
+        thousandSeparator
+        allowNegative={false}
+        onValueChange={(values) => {
+          const { value } = values; // this is the numeric value as a string (no formatting)
+          handleValueChange({ target: { name, value } });
+        }}
+        getInputRef={inputRef}
       />
       {type === "withDropDown" && (
         <DropDown handleOptionChange={handleOptionChange} />
