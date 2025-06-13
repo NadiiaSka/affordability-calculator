@@ -172,8 +172,14 @@ function App() {
           />
           {depositValue > 0 && (
             <p>
-              With you deposit of ${depositValue} you could afford a property up
-              to{"  "}
+              With a deposit of{" "}
+              <NumericFormat
+                value={depositValue}
+                displayType="text"
+                thousandSeparator
+                prefix="$"
+              />{" "}
+              you could afford a property up to{"  "}
               <NumericFormat
                 value={propertyPrice}
                 displayType="text"
