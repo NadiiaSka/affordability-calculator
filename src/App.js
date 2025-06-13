@@ -3,7 +3,7 @@ import ButtonRow from "./components/ButtonRow";
 import InputRow from "./components/InputRow";
 import InputList from "./components/InputList";
 import mainImage from "./assets/images/house.svg";
-import CurrencyFormat from "react-currency-format";
+import { NumericFormat } from "react-number-format";
 import fetchResult from "./api/fetchResult";
 
 function App() {
@@ -164,50 +164,50 @@ function App() {
         </div>
         <div className="resultContainer">
           <p>Here's what you can borrow</p>
-          <CurrencyFormat
+          <NumericFormat
             value={borrowing}
-            displayType={"text"}
-            thousandSeparator={true}
-            prefix={"$"}
+            displayType="text"
+            thousandSeparator
+            prefix="$"
           />
           {depositValue > 0 && (
             <p>
               With you deposit of ${depositValue} you could afford a property up
               to{"  "}
-              <CurrencyFormat
+              <NumericFormat
                 value={propertyPrice}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"$"}
+                displayType="text"
+                thousandSeparator
+                prefix="$"
               />
             </p>
           )}
           <p>Total income</p>
-          <CurrencyFormat
+          <NumericFormat
             value={totalIncome}
-            displayType={"text"}
-            thousandSeparator={true}
-            prefix={"$"}
+            displayType="text"
+            thousandSeparator
+            prefix="$"
           />
           {totalLoan > 0 && (
             <>
               <p>Total loans</p>
-              <CurrencyFormat
+              <numericFormat
                 value={totalLoan}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"$"}
+                displayType="text"
+                thousandSeparator
+                prefix="$"
               />
             </>
           )}
           {totalCreditCards > 0 && (
             <>
               <p>Total credit cards</p>
-              <CurrencyFormat
+              <NumericFormat
                 value={totalCreditCards}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"$"}
+                displayType="text"
+                thousandSeparator
+                prefix="$"
               />
             </>
           )}
