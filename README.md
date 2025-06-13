@@ -1,4 +1,4 @@
-https://nadia-affordability-calculator.herokuapp.com/
+[https://nadia-affordability-calculator.herokuapp.com/](https://affordability-calculator.netlify.app/)
 
 
 # Getting Started with Create React App
