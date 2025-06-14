@@ -15,13 +15,11 @@ const InputRow = ({
   const [currentValue, setCurrentValue] = useState();
   const inputRef = useRef(null);
 
-  const handleValueChange = (e) => {
-    e.preventDefault();
-    let name = e.target.name;
-    let value = isPerYear ? e.target.value : parseInt(e.target.value) * 52;
+  const processValueChange = (name, value) => {
+    let processedValue = isPerYear ? value : parseInt(value) * 52;
     setCurrentName(name);
-    setCurrentValue(value);
-    const newValues = { ...values, [name]: value };
+    setCurrentValue(processedValue);
+    const newValues = { ...values, [name]: processedValue };
     setValues(newValues);
     calculateTotal(newValues);
   };
@@ -74,10 +72,7 @@ const InputRow = ({
         className="input"
         thousandSeparator
         allowNegative={false}
-        onValueChange={(values) => {
-          const { value } = values; // this is the numeric value as a string (no formatting)
-          handleValueChange({ target: { name, value } });
-        }}
+        onValueChange={({ value }) => processValueChange(name, value)}
         getInputRef={inputRef}
       />
       {type === "withDropDown" && (
