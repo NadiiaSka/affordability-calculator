@@ -198,7 +198,7 @@ function App() {
           {totalLoan > 0 && (
             <>
               <p>Total loans</p>
-              <numericFormat
+              <NumericFormat
                 value={totalLoan}
                 displayType="text"
                 thousandSeparator
