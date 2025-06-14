@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import DropDown from "./DropDown";
 import { NumericFormat } from "react-number-format";
 
@@ -13,7 +13,7 @@ const InputRow = ({
   const [isPerYear, setIsPerYear] = useState(true);
   const [currentName, setCurrentName] = useState();
   const [currentValue, setCurrentValue] = useState();
-  const inputRef = useRef(null);
+  const [localValue, setLocalValue] = useState("");
 
   const processValueChange = (name, value) => {
     let processedValue = isPerYear ? value : parseInt(value) * 52;
@@ -52,15 +52,8 @@ const InputRow = ({
   };
 
   const handleRemoveClick = () => {
-    if (inputRef.current) inputRef.current.value = "";
-
-    const newValues = { ...values };
-    delete newValues[name];
-    setValues(newValues);
-    calculateTotal(newValues);
-
-    setCurrentName(null);
-    setCurrentValue(null);
+    setLocalValue("");
+    processValueChange(name, "0");
   };
 
   return (
@@ -69,15 +62,18 @@ const InputRow = ({
       <span>$ </span>
       <NumericFormat
         name={name}
+        value={localValue}
         className="input"
         thousandSeparator
         allowNegative={false}
-        onValueChange={({ value }) => processValueChange(name, value)}
-        getInputRef={inputRef}
+        onValueChange={({ value }) => {
+          setLocalValue(value);
+          processValueChange(name, value);
+        }}
       />
       {type === "withDropDown" && (
         <DropDown handleOptionChange={handleOptionChange} />
-      )}
+      )}{" "}
       <button className="btn-remove" onClick={handleRemoveClick}>
         &#10006;
       </button>
