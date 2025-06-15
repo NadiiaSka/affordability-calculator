@@ -18,11 +18,11 @@ beforeEach(() => {
 
 describe("InputRow Component", () => {
   test("renders an input field and a dropdown", () => {
-    expect(screen.getByRole("spinbutton")).toBeInTheDocument();
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
     expect(screen.getByRole("combobox")).toBeInTheDocument();
   });
   test("calls setValues and calculateTotal function when the input changes", () => {
-    const input = screen.getByRole("spinbutton");
+    const input = screen.getByRole("textbox");
     const value = 123;
     fireEvent.change(input, { target: { value } });
 

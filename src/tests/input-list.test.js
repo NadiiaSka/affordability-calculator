@@ -20,7 +20,7 @@ beforeEach(() => {
 
 describe("InputList Component", () => {
   test("renders an input field with a button", () => {
-    expect(screen.getByRole("spinbutton")).toBeInTheDocument();
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
     expect(
       screen.getByRole("button", {
         name: "add input",
@@ -29,7 +29,7 @@ describe("InputList Component", () => {
   });
   test("clicking a button adds second input field", () => {
     // only one input field before clicking the button
-    expect(screen.getAllByRole("spinbutton").length).toBe(1);
+    expect(screen.getAllByRole("textbox").length).toBe(1);
 
     const button = screen.getByRole("button", {
       name: "add input",
@@ -38,6 +38,6 @@ describe("InputList Component", () => {
     fireEvent.click(button);
 
     //one more input field added after the click
-    expect(screen.getAllByRole("spinbutton").length).toBe(2);
+    expect(screen.getAllByRole("textbox").length).toBe(2);
   });
 });
