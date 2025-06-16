@@ -9,6 +9,8 @@ const InputRow = ({
   setValues,
   calculateTotal,
   type,
+  index,
+  handleRemove,
 }) => {
   const [isPerYear, setIsPerYear] = useState(true);
   const [currentName, setCurrentName] = useState();
@@ -54,6 +56,13 @@ const InputRow = ({
   const handleRemoveClick = () => {
     setLocalValue("");
     processValueChange(name, "0");
+    if (
+      name !== "salaryFirst" &&
+      name !== "salarySecond" &&
+      name !== "deposit"
+    ) {
+      handleRemove();
+    }
   };
 
   return (

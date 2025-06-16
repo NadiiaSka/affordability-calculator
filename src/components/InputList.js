@@ -10,24 +10,36 @@ const InputList = ({
   setValues,
   calculateTotal,
 }) => {
-  const [inputListLength, setInputListLength] = useState(1);
+  const [inputFields, setInputFields] = useState(["0"]);
 
   const handleAddInputField = () => {
-    setInputListLength(inputListLength + 1);
+    setInputFields([...inputFields, Date.now().toString()]);
+  };
+
+  const handleRemoveField = (idToRemove) => {
+    const nameToRemove = `${inputLabel}${idToRemove}`;
+    const newValues = { ...values };
+    delete newValues[nameToRemove];
+    setValues(newValues);
+    calculateTotal(newValues);
+    const updatedFields = inputFields.filter((id) => id !== idToRemove);
+    setInputFields(updatedFields);
   };
 
   return (
     <div>
-      {[...Array(inputListLength)].map((_, index) => {
+      {inputFields.map((id, index) => {
         return (
           <InputRow
-            key={index}
+            key={id}
+            id={id}
             labelText={`${inputLabel} #${index + 1}`}
-            name={`${inputLabel}${index}`}
+            name={`${inputLabel}${id}`}
             values={values}
             type={type}
             setValues={setValues}
             calculateTotal={calculateTotal}
+            handleRemove={() => handleRemoveField(id)}
           />
         );
       })}
