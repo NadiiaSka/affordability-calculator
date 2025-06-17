@@ -9,7 +9,6 @@ const InputRow = ({
   setValues,
   calculateTotal,
   type,
-  index,
   handleRemove,
 }) => {
   const [isPerYear, setIsPerYear] = useState(true);
@@ -73,7 +72,8 @@ const InputRow = ({
         name={name}
         value={localValue}
         className="input"
-        thousandSeparator
+        thousandSeparator="."
+        decimalSeparator=","
         allowNegative={false}
         onValueChange={({ value }) => {
           setLocalValue(value);
