@@ -19,7 +19,10 @@ function App() {
   const [propertyPrice, setPropertyPrice] = useState(0);
 
   const calculateTotal = (newValues) => {
-    const incomeArray = Object.values(newValues);
+    // Convert values to an array, replacing empty strings with 0
+    const incomeArray = Object.values(newValues).map((value) =>
+      value === "" ? 0 : parseInt(value)
+    );
     const newTotal = incomeArray.reduce((accumulator, value) => {
       return accumulator + (value && parseInt(value));
     }, 0);
