@@ -3,6 +3,7 @@ import InputRow from "../components/InputRow";
 
 const calculateTotalMock = jest.fn();
 const setValuesMock = jest.fn();
+const handleRemoveMock = jest.fn();
 
 beforeEach(() => {
   render(
@@ -12,6 +13,7 @@ beforeEach(() => {
       setValues={setValuesMock}
       calculateTotal={calculateTotalMock}
       type="withDropDown"
+      handleRemove={handleRemoveMock}
     />
   );
 });
@@ -31,5 +33,24 @@ describe("InputRow Component", () => {
 
     expect(calculateTotalMock).toHaveBeenCalledTimes(1);
     expect(calculateTotalMock).toHaveBeenCalledWith({ "test input": "123" });
+  });
+  test("calls setValues and calculateTotal function when the dropdown changes", () => {
+    const input = screen.getByRole("textbox");
+    fireEvent.change(input, { target: { value: "1000" } });
+
+    const dropdown = screen.getByRole("combobox");
+    fireEvent.change(dropdown, { target: { value: "perWeek" } });
+
+    expect(setValuesMock).toHaveBeenCalledTimes(2);
+    expect(setValuesMock).toHaveBeenCalledWith({ "test input": "1000" });
+
+    expect(calculateTotalMock).toHaveBeenCalledTimes(2);
+    expect(calculateTotalMock).toHaveBeenCalledWith({ "test input": "1000" });
+  });
+  test("calls handleRemove when the remove button is clicked", () => {
+    const removeBtn = screen.getByTestId("remove-button");
+    fireEvent.click(removeBtn);
+
+    expect(handleRemoveMock).toHaveBeenCalledTimes(1);
   });
 });

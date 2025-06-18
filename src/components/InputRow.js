@@ -83,7 +83,11 @@ const InputRow = ({
       {type === "withDropDown" && (
         <DropDown handleOptionChange={handleOptionChange} />
       )}{" "}
-      <button className="btn-remove" onClick={handleRemoveClick}>
+      <button
+        className="btn-remove"
+        onClick={handleRemoveClick}
+        data-testid="remove-button"
+      >
         &#10006;
       </button>
     </div>
