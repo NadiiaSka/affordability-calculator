@@ -29,6 +29,18 @@ function App() {
     return newTotal;
   };
 
+  const handleInputListEmpty = (type) => {
+    if (type === "loans") {
+      setButtonSelected((prev) => ({ ...prev, loans: false }));
+    }
+    if (type === "creditCards") {
+      setButtonSelected((prev) => ({ ...prev, creditCards: false }));
+    }
+    if (type === "otherSourceOfIncome") {
+      setButtonSelected((prev) => ({ ...prev, otherSourceOfIncome: false }));
+    }
+  };
+
   const calculateTotalIncome = (newValues) => {
     setTotalIncomes(calculateTotal(newValues));
   };
@@ -119,13 +131,24 @@ function App() {
               values={incomeValues}
               setValues={setIncomeValues}
               calculateTotal={calculateTotalIncome}
+              onEmptyFields={() => handleInputListEmpty("otherSourceOfIncome")}
             />
           )}
           <p>Do you have any loans?</p>
           <ButtonRow
             buttonLabels={[
-              { id: 1, name: "loans", label: "Yes", value: true },
-              { id: 2, name: "loans", label: "No", value: false },
+              {
+                id: 1,
+                name: "loans",
+                label: "Yes",
+                value: true,
+              },
+              {
+                id: 2,
+                name: "loans",
+                label: "No",
+                value: false,
+              },
             ]}
             setButtonSelected={setButtonSelected}
             buttonSelected={buttonSelected}
@@ -137,6 +160,7 @@ function App() {
               values={loanValues}
               setValues={setLoanValues}
               calculateTotal={calculateTotalLoan}
+              onEmptyFields={() => handleInputListEmpty("loans")}
             />
           )}
           <p>Do you have any credit cards?</p>
@@ -155,6 +179,7 @@ function App() {
               values={creditCardValues}
               setValues={setCreditCardValues}
               calculateTotal={calculateTotalCreditCard}
+              onEmptyFields={() => handleInputListEmpty("creditCards")}
             />
           )}
           <p>How much deposit do you have?</p>

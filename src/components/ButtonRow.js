@@ -16,7 +16,9 @@ const ButtonRow = ({ buttonLabels, buttonSelected, setButtonSelected }) => {
       {buttonLabels.map((button) => (
         <Button
           key={button.id}
-          className={button.id === selectedButton ? "selected" : ""}
+          className={
+            button.value === buttonSelected[button.name] ? "selected" : ""
+          }
           label={button.label}
           handleButtonSelected={handleButtonSelected(button)}
         >

@@ -9,6 +9,7 @@ const InputList = ({
   type,
   setValues,
   calculateTotal,
+  onEmptyFields,
 }) => {
   const [inputFields, setInputFields] = useState(["0"]);
 
@@ -24,6 +25,9 @@ const InputList = ({
     calculateTotal(newValues);
     const updatedFields = inputFields.filter((id) => id !== idToRemove);
     setInputFields(updatedFields);
+    if (updatedFields.length === 0) {
+      onEmptyFields();
+    }
   };
 
   return (
