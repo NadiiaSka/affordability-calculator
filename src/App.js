@@ -8,13 +8,13 @@ import fetchResult from "./api/fetchResult";
 
 function App() {
   const [buttonSelected, setButtonSelected] = useState({});
-  const [totalIncome, setTotalIncome] = useState(0);
-  const [totalLoan, setTotalLoan] = useState(0);
-  const [totalCreditCards, setTotalCreditCard] = useState(0);
+  const [totalIncomes, setTotalIncomes] = useState(0);
+  const [totalLoans, setTotalLoans] = useState(0);
+  const [totalCreditCards, setTotalCreditCards] = useState(0);
+  const [depositValue, setDepositValue] = useState(0);
   const [loanValues, setLoanValues] = useState({});
   const [incomeValues, setIncomeValues] = useState({});
   const [creditCardValues, setCreditCardValues] = useState({});
-  const [depositValue, setDepositValue] = useState(0);
   const [borrowing, setBorrowing] = useState(0);
   const [propertyPrice, setPropertyPrice] = useState(0);
 
@@ -30,13 +30,13 @@ function App() {
   };
 
   const calculateTotalIncome = (newValues) => {
-    setTotalIncome(calculateTotal(newValues));
+    setTotalIncomes(calculateTotal(newValues));
   };
   const calculateTotalLoan = (newValues) => {
-    setTotalLoan(calculateTotal(newValues));
+    setTotalLoans(calculateTotal(newValues));
   };
   const calculateTotalCreditCard = (newValues) => {
-    setTotalCreditCard(calculateTotal(newValues));
+    setTotalCreditCards(calculateTotal(newValues));
   };
   const calculateTotalDeposit = (newValues) => {
     setDepositValue(calculateTotal(newValues));
@@ -44,14 +44,14 @@ function App() {
 
   const fetchData = useCallback(async () => {
     const response = await fetchResult(
-      totalIncome,
+      totalIncomes,
       totalCreditCards,
-      totalLoan,
+      totalLoans,
       depositValue
     );
     setBorrowing(response.borrowing);
     setPropertyPrice(response.property_price);
-  }, [totalIncome, totalCreditCards, totalLoan, depositValue]);
+  }, [totalIncomes, totalCreditCards, totalLoans, depositValue]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -193,16 +193,16 @@ function App() {
           )}
           <p>Total income</p>
           <NumericFormat
-            value={totalIncome}
+            value={totalIncomes}
             displayType="text"
             thousandSeparator
             prefix="$"
           />
-          {totalLoan > 0 && (
+          {totalLoans > 0 && (
             <>
               <p>Total loans</p>
               <NumericFormat
-                value={totalLoan}
+                value={totalLoans}
                 displayType="text"
                 thousandSeparator
                 prefix="$"
