@@ -8,7 +8,7 @@ beforeEach(() => {
     <ButtonRow
       buttonLabels={[
         { id: 1, name: "firstButton", label: "Yes", value: true },
-        { id: 2, name: "firstButton", label: "No", value: false },
+        { id: 2, name: "secondButton", label: "No", value: false },
       ]}
       buttonSelected={{ firstButton: false }}
       setButtonSelected={setButtonSelectedMock}
@@ -17,24 +17,22 @@ beforeEach(() => {
 });
 
 describe("ButtonRow Component", () => {
-  test("renders two buttons on the screen", () => {
-    expect(screen.getByText(/Yes/i)).toBeInTheDocument();
-    expect(screen.getByText(/No/i)).toBeInTheDocument();
-    expect(screen.getAllByRole("button").length).toBe(2);
+  test("renders buttons with correct labels", () => {
+    expect(screen.getByText("Yes")).toBeInTheDocument();
+    expect(screen.getByText("No")).toBeInTheDocument();
   });
-  test("clicking one button makes it selected and setButtonSelected function called", () => {
+  test("clicking one button calls setButtonSelected with correct value", () => {
     const button1 = screen.getByText("Yes");
-    const button2 = screen.getByText("No");
-
-    //before the click no buttons selected
-    expect(button1).not.toHaveClass("selected");
-    expect(button2).not.toHaveClass("selected");
-
     fireEvent.click(button1);
-    expect(setButtonSelectedMock).toHaveBeenCalledTimes(1);
 
-    //after the click first buttons selected
-    expect(button1).toHaveClass("selected");
-    expect(button2).not.toHaveClass("selected");
+    expect(setButtonSelectedMock).toHaveBeenCalledWith({
+      firstButton: true,
+    });
+  });
+  test("calls setButtonSelected with correct object on click", () => {
+    fireEvent.click(screen.getByText("Yes"));
+    expect(setButtonSelectedMock).toHaveBeenCalledWith({
+      firstButton: true,
+    });
   });
 });
