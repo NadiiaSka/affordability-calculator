@@ -39,6 +39,9 @@ function App() {
     if (type === "otherSourceOfIncome") {
       setButtonSelected((prev) => ({ ...prev, otherSourceOfIncome: false }));
     }
+    if (type === "secondSalary") {
+      setButtonSelected((prev) => ({ ...prev, secondSalary: false }));
+    }
   };
 
   const calculateTotalIncome = (newValues) => {
@@ -111,6 +114,7 @@ function App() {
                 values={incomeValues}
                 setValues={setIncomeValues}
                 calculateTotal={calculateTotalIncome}
+                onEmptyFields={() => handleInputListEmpty("secondSalary")}
               />
             </>
           )}

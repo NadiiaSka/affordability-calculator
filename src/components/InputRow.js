@@ -10,6 +10,7 @@ const InputRow = ({
   calculateTotal,
   type,
   handleRemove,
+  onEmptyFields = () => {},
 }) => {
   const [isPerYear, setIsPerYear] = useState(true);
   const [currentName, setCurrentName] = useState();
@@ -61,6 +62,9 @@ const InputRow = ({
       name !== "deposit"
     ) {
       handleRemove();
+    }
+    if (name === "salarySecond") {
+      onEmptyFields();
     }
   };
 
